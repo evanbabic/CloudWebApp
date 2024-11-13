@@ -13,9 +13,9 @@ function PlaylistDisplay( {mood} ) {
             setLoading(true);
             setError(null);
 
-            axios.get('http://localhost:5000/api/playlist?mood=${mood}')
-            .then((response) => {
-                setPlaylist(response.data.playlist);
+            axios.get('http://localhost:5000/api/playlist', { params: {mood: mood} })
+            .then((response) => { 
+                setPlaylist(response.data.playlist[1]);
                 setLoading(false);
             })
             .catch((err) => {
@@ -26,13 +26,15 @@ function PlaylistDisplay( {mood} ) {
     }, [mood]);
 
     if (loading) return <div className="playlist-display"><p>Loading...</p></div>
-    if (error) return <div className="playlist-display"><p>{error}</p></div>
+    if (error) return <div className="playlist-display"><p>{error}</p><p>{message}</p></div>
 
     return(
         <>
             <div className="playlist-display">
                 <h3>Playlist for Mood {mood}:</h3>
-                {/* <ul>
+                {
+                /* <ul>
+                
                     {playlist.map((song, index) => (
                         <li key={index}>
                             {song.title} by {song.artist}
