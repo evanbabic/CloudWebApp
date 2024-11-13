@@ -25,8 +25,8 @@ function PlaylistDisplay( {mood} ) {
         }
     }, [mood]);
 
-    if (loading) return <p>Loading...</p>
-    if (error) return <p>{error}</p>
+    if (loading) return <div className="playlist-display"><p>Loading...</p></div>
+    if (error) return <div className="playlist-display"><p>{error}</p></div>
 
     return(
         <>

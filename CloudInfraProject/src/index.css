@@ -12,18 +12,14 @@ body {
     padding: 0;
 }
 
-#main-div {
-    color: white;
-    height: 100vh;
-}
-
 div {
     color: white;
 }
 
 .container {
-    width: 70%;
+    width: 100%;
     padding: 40px;
+    margin-top: 10%;
     background-color: rgba(255, 0, 0, 0.1);
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
@@ -31,7 +27,34 @@ div {
     color: white;
 }
 
-#playlist {
+.playlist-display {
     margin-top: 20px;
+    text-align: center;
+}
 
+.btn-outline-primary {
+    background-color: rgb(158, 68, 68, 0.4);
+    color: white;
+    border: 1px solid white;
+}
+
+.btn-outline-primary:hover {
+    background-color: rgba(232, 49, 49, 0.4);
+    color: white;
+    border: 1px solid white;
+}
+
+.btn-outline-primary:focus, .btn-outline-primary:active {
+    background-color: rgb(224, 36, 36, 0.6);
+    color: white;
+    border: 1px solid white;
+}
+
+.main-div {
+    height: 100vh;
+}
+
+.display-3 {
+    padding: 0;
+    margin: 0;
 }

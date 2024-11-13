@@ -12,7 +12,6 @@ function App() {
     <div className="main-div">
         <Header/>
         <MoodSelector onMoodSelect={setMood}/>
-        <p>{mood}</p>
         {mood && <PlaylistDisplay mood={mood}/>}
       </div>
   )

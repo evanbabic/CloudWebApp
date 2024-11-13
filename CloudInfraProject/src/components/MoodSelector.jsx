@@ -1,7 +1,6 @@
-import React from "react"
 
 function MoodSelector( {onMoodSelect} ){
-    const moods = ['Happy', 'Sad', 'Energetic', 'Relaxed', 'Angry', 'Motivated']
+    const moods = ['Happy', 'Sad', 'Energetic', 'Relaxed', 'Angry', 'Motivated', 'Romantic']
 
     return(
         <> <br></br>
@@ -11,7 +10,7 @@ function MoodSelector( {onMoodSelect} ){
                     <h2>Select Your Mood</h2>
                     <div className="d-flex align-items-center mt-3">
                         { moods.map((mood) => (
-                            <button key={mood} className="btn btn-primary" style={{margin: 10}} onClick={() => onMoodSelect(mood)}> {mood} </button>
+                            <button key={mood} className="btn btn-outline-primary" style={{margin: 10}} onClick={() => onMoodSelect(mood)}> {mood} </button>
                         )) }
                     </div>
                 </div>
@@ -19,7 +18,6 @@ function MoodSelector( {onMoodSelect} ){
         </div>
 
     </>)
-    
 }
 
 export default MoodSelector
