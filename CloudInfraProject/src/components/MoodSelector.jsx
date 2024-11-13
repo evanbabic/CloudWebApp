@@ -16,7 +16,6 @@ function MoodSelector( {onMoodSelect} ){
                 </div>
             </div>
         </div>
-
     </>)
 }
 

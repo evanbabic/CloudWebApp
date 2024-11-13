@@ -6,6 +6,8 @@ function PlaylistDisplay( {mood} ) {
     const [playlist, setPlaylist] = useState();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [message, setMessage] = useState("");
+    const [token, setToken] = useState();
 
     useEffect(() => {
         if (mood){
@@ -13,9 +15,9 @@ function PlaylistDisplay( {mood} ) {
             setLoading(true);
             setError(null);
 
-            axios.get('http://localhost:5000/api/playlist', { params: {mood: mood} })
+            axios.get('http://localhost:5000/api/spotify/recommendation', { params: {mood: mood} })
             .then((response) => { 
-                setPlaylist(response.data.playlist[1]);
+                setMessage(response.data.message);
                 setLoading(false);
             })
             .catch((err) => {
@@ -26,13 +28,14 @@ function PlaylistDisplay( {mood} ) {
     }, [mood]);
 
     if (loading) return <div className="playlist-display"><p>Loading...</p></div>
-    if (error) return <div className="playlist-display"><p>{error}</p><p>{message}</p></div>
+    if (error) return <div className="playlist-display"><p>{error}</p></div>
 
     return(
         <>
             <div className="playlist-display">
                 <h3>Playlist for Mood {mood}:</h3>
                 {
+                    <p>{message}</p>
                 /* <ul>
                 
                     {playlist.map((song, index) => (
