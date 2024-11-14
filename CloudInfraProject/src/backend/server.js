@@ -19,43 +19,49 @@ const moodToValence = {
     Energetic: { min: 0.6, max: 0.9 },
     Relaxed: { min: 0.3, max: 0.6 },
     Angry: { min: 0.0, max: 0.3 },
-    Motivated: { min: 0.5, max: 0.9 },
+    Sigma: { min: 0.5, max: 0.9 },
     Romantic: { min: 0.0, max: 0.4 }
-  };
+};
+
+let cached_token = null;
+let token_expiry = null;
 
 async function getAccessToken() {
-    try {
-      const authOptions = {
-        url: 'https://accounts.spotify.com/api/token',
-        headers: {
-          'Authorization': 'Basic ' + Buffer.from(spotify_id + ':' + spotify_key).toString('base64'),
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        data: 'grant_type=client_credentials',
-      };
-  
-      // Sending POST request using axios
-      const response = await axios.post(authOptions.url, authOptions.data, { headers: authOptions.headers });
-  
-      // Get the access token from the response
-      const token = response.data.access_token;
 
-      return token;
+  // Avoids repeatedly calling for token if token is still valid
+  if (cached_token && Date.now() < token_expiry) { return cached_token; }
 
-    } catch (error) {
-        console.error('Error fetching access token:', error);
-      throw error;
-    }
+  try {
+    const authOptions = {
+      url: 'https://accounts.spotify.com/api/token',
+      headers: {
+        'Authorization': 'Basic ' + Buffer.from(spotify_id + ':' + spotify_key).toString('base64'),
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      data: 'grant_type=client_credentials',
+    };
+  
+    const response = await axios.post(authOptions.url, authOptions.data, { headers: authOptions.headers });
+    cached_token = response.data.access_token;
+    token_expiry = Date.now() + (response.data.expires_in * 1000);
+
+    return cached_token;
+
+  } catch (error) {
+      console.error('Error fetching access token:', error);
+    throw error;
   }
+}
 
 app.get('/api/spotify/recommendation', async (req, res) => {
     const mood = req.query.mood;
 
+
     const token = await getAccessToken();
     const {min, max} = moodToValence[mood];
-
+  
     console.log("Mood:" + mood + "Min Valence: " + min + "Max Valence: " + max);
-
+  
     const response = await axios.get('https://api.spotify.com/v1/recommendations', {
         headers: { Authorization: `Bearer ${token}`},
         params: {
@@ -64,7 +70,7 @@ app.get('/api/spotify/recommendation', async (req, res) => {
             limit: 10
         },
     });
-
+  
     res.json({ recommendations: response.data.tracks });
 })
     
