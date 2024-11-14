@@ -20,6 +20,7 @@ const moodToValence = {
     Relaxed: { min: 0.3, max: 0.6 },
     Angry: { min: 0.0, max: 0.3 },
     Motivated: { min: 0.5, max: 0.9 },
+    Romantic: { min: 0.0, max: 0.4 }
   };
 
 async function getAccessToken() {
@@ -55,16 +56,18 @@ app.get('/api/spotify/recommendation', async (req, res) => {
 
     console.log("Mood:" + mood + "Min Valence: " + min + "Max Valence: " + max);
 
-    // const token = await getAccessToken();
-    res.json({ message: 'Success!' });
+    const response = await axios.get('https://api.spotify.com/v1/recommendations', {
+        headers: { Authorization: `Bearer ${token}`},
+        params: {
+            seed_genres: 'pop',
+            target_valence: Math.random() * ( max - min ) + min,
+            limit: 10
+        },
+    });
+
+    res.json({ recommendations: response.data.tracks });
 })
     
-app.get('/api/playlist', (req, res) => {
-    const mood = req.query.mood;
-    console.log(mood);
-    res.json({message: 'GET path is working! Mood: ' + mood, status: 'success'});
-})
-
 app.listen(port, () => {
     console.log(`Backend API running at http://localhost:${port}`);
 })
