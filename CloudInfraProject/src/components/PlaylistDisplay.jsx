@@ -26,19 +26,23 @@ function PlaylistDisplay( {mood} ) {
     }, [mood]);
 
     if (loading) return <div className="playlist-display"><p>Loading...</p></div>
-    if (error) return <div className="playlist-display"><p>{error}</p></div>
+    if (error) return <div className="playlist-display"><p>{error}</p> {mood = ''}</div>
 
     return(
         <>
             <div className="playlist-display">
-                <h3>Playlist for Mood: {mood}:</h3> <br></br>
-                <ul>
-                    {playlist.map((track, index) => (
-                        <li key={index}>
-                            {track.name} by {track.artists[0].name}                        
-                        </li>
-                    ))}
-                </ul>
+                    
+                {playlist.map((track, index) => (
+                    <div className="display-element" key={index}>
+                        <div>
+                            <p className="p-title"><b>{track.name}</b></p>
+                            <p>{track.artists[0].name}</p> 
+                            <img src={track.album.images[0].url}></img>  
+                        </div>
+                                         
+                    </div>
+               
+                ))}
             </div>
         </>
     )

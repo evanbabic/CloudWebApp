@@ -19,7 +19,7 @@ div {
 .container {
     width: 100%;
     padding: 40px;
-    margin-top: 10%;
+    margin-top: 20%;
     background-color: rgba(255, 0, 0, 0.1);
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
@@ -28,8 +28,25 @@ div {
 }
 
 .playlist-display {
-    margin-top: 20px;
+    margin-top: 3%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    height: 30vh;
+    width: 80vw;
+}
+
+.display-element img{
+    width: 75%;
+    height: 75%;
+    border: 3px solid white;
+    border-radius: 8px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 .btn-outline-primary {
@@ -62,4 +79,10 @@ div {
 
 ul {
     list-style-type: none;
+}
+
+.p-title {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    overflow-x: visible;
 }

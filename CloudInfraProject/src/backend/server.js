@@ -59,7 +59,7 @@ const moodToTempo = {
 
 const moodToGenres = {
   Happy: ['pop', 'dance', 'indie-pop', 'funk', 'house'],
-  Sad: ['blues', 'alternative', 'acoustic', 'emo', 'indie-folk'],
+  Sad: ['blues', 'alternative', 'shoegaze', 'emo', 'indie-folk'],
   Energetic: ['edm', 'rock', 'hip-hop', 'pop', 'dance'],
   Relaxed: ['chillwave', 'jazz', 'indie-folk', 'ambient', 'acoustic'],
   Angry: ['hard-rock', 'metal', 'punk', 'hip-hop', 'hardcore'],
@@ -131,7 +131,7 @@ app.get('/api/spotify/recommendation', async (req, res) => {
         target_energy: getRandomizedValue(energyMin, energyMax, 0.15),
         target_danceability: getRandomizedValue(danceMin, danceMax, 0.15),
         target_tempo: getRandomizedValue(tempoMin, tempoMax, 0.15),
-        target_popularity: Math.round(getRandomizedValue(50, 90)),
+        target_popularity: Math.round(getRandomizedValue(30, 100)),
         limit: 10
       },
   });

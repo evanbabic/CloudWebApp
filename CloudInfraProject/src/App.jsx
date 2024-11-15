@@ -19,10 +19,14 @@ function App() {
         {!mood && <MoodSelector onMoodSelect={setMood}/>}
         
         { mood && (
-          <div className="container">
-              <PlaylistDisplay mood={mood}/>
-              <button className="btn-outline-primary" onClick={handleResetMood}>Select Mood</button>
+          <>
+            <PlaylistDisplay mood={mood}/> <br/><br/>
+
+           <div className="container">
+            <button className="btn-outline-primary" onClick={handleResetMood}>Select Mood</button>
           </div>
+          
+          </>
         )}
       </div>
   )
