@@ -7,9 +7,9 @@ function PlaylistDisplay( {mood} ) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
+    useEffect( () => {
         if (mood){
-
+            
             setLoading(true);
             setError(null);
 
@@ -21,7 +21,7 @@ function PlaylistDisplay( {mood} ) {
             .catch((err) => {
                 setError("Failed to load playlist. Please try again.");
                 setLoading(false);
-            })
+            })            
         }
     }, [mood]);
 

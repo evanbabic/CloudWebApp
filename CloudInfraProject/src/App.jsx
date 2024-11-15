@@ -8,11 +8,22 @@ function App() {
 
   const [mood, setMood] = useState('');
 
+  const handleResetMood = () => {
+    setMood('');
+  }
+
   return (
     <div className="main-div">
         <Header/>
-        <MoodSelector onMoodSelect={setMood}/>
-        {mood && <PlaylistDisplay mood={mood}/>}
+
+        {!mood && <MoodSelector onMoodSelect={setMood}/>}
+        
+        { mood && (
+          <div className="container">
+              <PlaylistDisplay mood={mood}/>
+              <button className="btn-outline-primary" onClick={handleResetMood}>Select Mood</button>
+          </div>
+        )}
       </div>
   )
 }
