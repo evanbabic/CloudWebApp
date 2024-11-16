@@ -3,13 +3,10 @@ body {
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
-    height: 100vh;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    padding: 0;
 }
 
 div {
@@ -36,17 +33,29 @@ div {
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: 30vh;
     width: 80vw;
+    background-color: black;
+    padding: 20px;
+    border-radius: 20px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./assets/pexels-codioful-7130475.jpg');
+    box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.4); 
+}
+
+.display-element {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    height: 100%; 
 }
 
 .display-element img{
-    width: 75%;
-    height: 75%;
+    width: 200px;
+    height: 200px;
     border: 3px solid white;
     border-radius: 8px;
     object-fit: cover;
-    border-radius: 10px;
 }
 
 .btn-outline-primary {
@@ -68,21 +77,40 @@ div {
     border: 1px solid white;
 }
 
-.main-div {
-    height: 100vh;
-}
-
 .display-3 {
     padding: 0;
     margin: 0;
 }
 
-ul {
-    list-style-type: none;
+.p-title {
+    font-size: 1.0rem;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    text-wrap-mode:wrap;
 }
 
-.p-title {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    overflow-x: visible;
+.container-lg {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.spinner {
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

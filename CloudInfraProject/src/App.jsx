@@ -7,9 +7,11 @@ import {useState} from 'react'
 function App() {
 
   const [mood, setMood] = useState('');
+  const [playlist, setPlaylist] = useState([]);
 
   const handleResetMood = () => {
     setMood('');
+    setPlaylist([]);
   }
 
   return (
@@ -20,16 +22,15 @@ function App() {
         
         { mood && (
           <>
-            <PlaylistDisplay mood={mood}/> <br/><br/>
+            <PlaylistDisplay mood={mood}/> <br/>
 
-           <div className="container">
-            <button className="btn-outline-primary" onClick={handleResetMood}>Select Mood</button>
-          </div>
-          
+            <div className="container-lg" >
+              <button className="btn-outline-primary" onClick={handleResetMood}>Select Mood</button>
+            </div> 
           </>
         )}
       </div>
-  )
+  ) 
 }
 
 export default App
