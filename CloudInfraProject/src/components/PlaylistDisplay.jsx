@@ -13,7 +13,7 @@ function PlaylistDisplay( {mood} ) {
             setLoading(true);
             setError(null);
 
-            axios.get('http://localhost:5000/api/spotify/recommendation', { params: {mood: mood} })
+            axios.get('https://dqy1oo5875.execute-api.us-east-1.amazonaws.com/dev/recommendation', { params: {mood: mood} })
             .then((response) => { 
                 setPlaylist(response.data.recommendations);
                 setLoading(false);

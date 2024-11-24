@@ -63,6 +63,8 @@ div {
     color: white;
     border: 1px solid white;
     border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .btn-outline-primary:hover {
@@ -85,9 +87,12 @@ div {
 .p-title {
     font-size: 1.0rem;
     width: 100%;
+    max-width: 300px;
     text-align: center;
     margin-bottom: 0;
-    text-wrap-mode:wrap;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .container-lg {
@@ -113,4 +118,19 @@ div {
     to {
         transform: rotate(360deg);
     }
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    width: 25vw;
+    height: 25vh;
+    padding: 10px;
+    border-radius: 20px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./assets/pexels-codioful-7130475.jpg');
+    box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.4); 
+    margin-top: 50%;
 }
